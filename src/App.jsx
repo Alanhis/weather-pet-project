@@ -10,12 +10,16 @@ function App() {
     if (value != undefined) {
       console.log(value.data);
       fetch(
-        `https://api.openweathermap.org/data/3.0/onecall?lat=${
+        `https://api.openweathermap.org/data/2.5/weather?lat=${
           value.data.geo_lat
-        }&lon=${value.data.get_lon}&exclude=current&appid=${
+        }&lon=${value.data.geo_lon}&appid=${
           import.meta.env.VITE_OPENWEATHER_API
-        }`
-      );
+        }&units=metric&lang=ru`
+      )
+        .then(data => data.json())
+        .then(result => {
+          console.log(result);
+        });
     }
   }, [value]);
   console.log(value);
