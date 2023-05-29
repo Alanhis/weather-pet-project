@@ -6,6 +6,7 @@ import { WeatherContainer } from "./component/weather-container";
 function App() {
   const [value, setValue] = useState(); // Переменная с данными города
   const [weather, setWeather] = useState();
+  const [listWeather, setListWeather] = useState();
 
   useEffect(() => {
     if (value != undefined) {
@@ -20,9 +21,19 @@ function App() {
         .then((result) => {
           setWeather(result);
         });
+      fetch(
+        `https://api.openweathermap.org/data/2.5/forecast?lat=${
+          value.data.geo_lat
+        }&lon=${value.data.geo_lon}&cnt=5&appid=${
+          import.meta.env.VITE_OPENWEATHER_API
+        }&units=metric&lang=ru`
+      )
+        .then((data) => data.json())
+        .then((result) => {
+          setListWeather(result);
+        });
     }
   }, [value]);
-  console.log(value);
   return (
     <>
       <div>
@@ -33,8 +44,8 @@ function App() {
           filterFromBound="city"
           filterToBound="city"
         />
-        {weather != undefined ? (
-          <WeatherContainer data={weather} />
+        {weather != undefined && listWeather != undefined ? (
+          <WeatherContainer data={weather} list={listWeather.list} />
         ) : (
           <div>Выберите город</div>
         )}
