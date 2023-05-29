@@ -13,7 +13,7 @@ export function WeatherContainer(props) {
 
   return (
     <section className="container">
-      <img src={Icon[weather]} alt="Иконка погоды" />
+      <img className="icon" src={Icon[weather]} alt="Иконка погоды" />
       <p>На улице сейчас {props.data.weather[0].description}</p>
       <p>
         Текущая температура: {props.data.main.temp}°C . По ощущениям{" "}

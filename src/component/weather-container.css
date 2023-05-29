@@ -8,3 +8,6 @@
   left: calc(50% - 25vh);
   align-items: center;
 }
+.icon {
+  width: 10vw;
+}
