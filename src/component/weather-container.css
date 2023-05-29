@@ -9,5 +9,12 @@
   align-items: center;
 }
 .icon {
-  width: 10vw;
+  width: 8vw;
+}
+.hour-container {
+  display: flex;
+  gap: 15px;
+}
+.hour-icon {
+  width: 5vw;
 }

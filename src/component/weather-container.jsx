@@ -9,22 +9,45 @@ WeatherContainer.propTypes = {
 };
 const Icon = { CloudsIcon, StormIcon, RainIcon, ClearIcon };
 export function WeatherContainer(props) {
+  console.log(props.list);
   const weather = props.data.weather[0].main + "Icon";
 
   return (
     <section className="container">
       <img className="icon" src={Icon[weather]} alt="Иконка погоды" />
-      <p>На улице сейчас {props.data.weather[0].description}</p>
-      <p>
-        Текущая температура: {props.data.main.temp}°C . По ощущениям{" "}
-        {props.data.main.feels_like}°C
-      </p>
-      <p>
-        Рассвет в {new Date(props.data.sys.sunrise * 1000).toLocaleTimeString()}
-      </p>
-      <p>
-        Закат в {new Date(props.data.sys.sunset * 1000).toLocaleTimeString()}
-      </p>
+      <>
+        <p>На улице сейчас {props.data.weather[0].description}</p>
+        <p>
+          Текущая температура: {props.data.main.temp}°C . По ощущениям{" "}
+          {props.data.main.feels_like}°C
+        </p>
+        <p>
+          Рассвет в{" "}
+          {new Date(props.data.sys.sunrise * 1000).toLocaleTimeString()}
+        </p>
+        <p>
+          Закат в {new Date(props.data.sys.sunset * 1000).toLocaleTimeString()}
+        </p>
+      </>
+      <>
+        {props.list.map((data, key) => {
+          console.log(data);
+          return (
+            <div className="hour-container" key={key}>
+              <p>
+                Погодой на {new Date(data.dt * 1000).toLocaleTimeString()}{" "}
+                будет:
+              </p>{" "}
+              <img
+                className="hour-icon "
+                src={Icon[data.weather[0].main + "Icon"]}
+                alt="Иконка погоды"
+              />
+              <p>{data.main.feels_like}°C</p>
+            </div>
+          );
+        })}
+      </>
     </section>
   );
 }
