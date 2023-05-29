@@ -1,14 +1,14 @@
-import { useState, useEffect } from 'react';
-import './App.css';
-import { AddressSuggestions } from 'react-dadata';
-import 'react-dadata/dist/react-dadata.css';
+import { useState, useEffect } from "react";
+import "./App.css";
+import { AddressSuggestions } from "react-dadata";
+import "react-dadata/dist/react-dadata.css";
+import { WeatherContainer } from "./component/weather-container";
 function App() {
-  const [value, setValue] = useState();
+  const [value, setValue] = useState(); // Переменная с данными города
   const [weather, setWeather] = useState();
 
   useEffect(() => {
     if (value != undefined) {
-      console.log(value.data);
       fetch(
         `https://api.openweathermap.org/data/2.5/weather?lat=${
           value.data.geo_lat
@@ -16,9 +16,9 @@ function App() {
           import.meta.env.VITE_OPENWEATHER_API
         }&units=metric&lang=ru`
       )
-        .then(data => data.json())
-        .then(result => {
-          console.log(result);
+        .then((data) => data.json())
+        .then((result) => {
+          setWeather(result);
         });
     }
   }, [value]);
@@ -33,7 +33,11 @@ function App() {
           filterFromBound="city"
           filterToBound="city"
         />
-        <section>Темпиратура</section>
+        {weather != undefined ? (
+          <WeatherContainer data={weather} />
+        ) : (
+          <div>Выберите город</div>
+        )}
       </div>
     </>
   );

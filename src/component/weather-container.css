@@ -1,0 +1,10 @@
+.container {
+  background: #cadeef;
+  width: 50vh;
+  display: flex;
+  flex-direction: column;
+  margin-top: 50px;
+  position: absolute;
+  left: calc(50% - 25vh);
+  align-items: center;
+}
