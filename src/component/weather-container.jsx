@@ -9,7 +9,6 @@ WeatherContainer.propTypes = {
 };
 const Icon = { CloudsIcon, StormIcon, RainIcon, ClearIcon };
 export function WeatherContainer(props) {
-  console.log(props.list);
   const weather = props.data.weather[0].main + "Icon";
 
   return (
@@ -29,14 +28,12 @@ export function WeatherContainer(props) {
           Закат в {new Date(props.data.sys.sunset * 1000).toLocaleTimeString()}
         </p>
       </>
-      <>
+      <div className="hours-list">
         {props.list.map((data, key) => {
-          console.log(data);
           return (
             <div className="hour-container" key={key}>
               <p>
-                Погодой на {new Date(data.dt * 1000).toLocaleTimeString()}{" "}
-                будет:
+                Погодой в {new Date(data.dt * 1000).toLocaleTimeString()} будет:
               </p>{" "}
               <img
                 className="hour-icon "
@@ -47,7 +44,7 @@ export function WeatherContainer(props) {
             </div>
           );
         })}
-      </>
+      </div>
     </section>
   );
 }
