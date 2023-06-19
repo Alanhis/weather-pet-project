@@ -75,7 +75,9 @@ function App() {
                     <img className="secondary_icon " src={SunRiseIcon} />
                     <p className="secondary_main_text">
                       {new Date(
-                        weather.sys.sunrise * 1000
+                        weather.sys.sunrise * 1000 +
+                          new Date().getTimezoneOffset() * 60000 +
+                          weather.timezone * 1000
                       ).toLocaleTimeString()}
                     </p>
                   </div>
@@ -90,7 +92,11 @@ function App() {
                   <div className="secondary_unit_container">
                     <img className="secondary_icon " src={SunSetIcon} />
                     <p className="secondary_main_text">
-                      {new Date(weather.sys.sunset * 1000).toLocaleTimeString()}
+                      {new Date(
+                        weather.sys.sunset * 1000 +
+                          new Date().getTimezoneOffset() * 60000 +
+                          weather.timezone * 1000
+                      ).toLocaleTimeString()}
                     </p>
                   </div>
                 </div>
@@ -100,7 +106,11 @@ function App() {
                   return (
                     <div className="hour-container" key={key}>
                       <p className="secondary_main_text">
-                        {new Date(data.dt * 1000).toLocaleTimeString()}
+                        {new Date(
+                          data.dt * 1000 +
+                            new Date().getTimezoneOffset() * 60000 +
+                            weather.timezone * 1000
+                        ).toLocaleTimeString()}
                       </p>
                       <img
                         className="hour-icon secondary_icon "
