@@ -9,7 +9,9 @@
   align-items: center;
 }
 .icon {
-  width: 8vw;
+  width: 4vw;
+  filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%)
+    hue-rotate(49deg) brightness(105%) contrast(105%);
 }
 .hour-container {
   display: flex;

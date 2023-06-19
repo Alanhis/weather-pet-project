@@ -1,4 +1,4 @@
-export function getWeather() {
+export function getWeather(value, setWeather, setListWeather) {
   fetch(
     `https://api.openweathermap.org/data/2.5/weather?lat=${
       value.data.geo_lat
