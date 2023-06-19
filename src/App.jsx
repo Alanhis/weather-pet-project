@@ -7,6 +7,10 @@ import CloudsIcon from "./icons/cloud.svg";
 import StormIcon from "./icons/storm.svg";
 import RainIcon from "./icons/rain.svg";
 import ClearIcon from "./icons/sun.svg";
+import WaterIcon from "./icons/water.svg";
+import SunRiseIcon from "./icons/sunrise.svg";
+import WindIcon from "./icons/wind.svg";
+import SunSetIcon from "./icons/sunset.svg";
 import { getWeather } from "./utils/fetch";
 function App() {
   const [value, setValue] = useState(); // Переменная с данными города
@@ -56,19 +60,47 @@ function App() {
               </div>
             </main>
             <footer>
-              <div></div> <div> </div>
+              <section className="secondary_info_container">
+                <div className="secondary_text_container">
+                  <div className="secondary_unit_container">
+                    <img className="secondary_icon " src={WaterIcon} />
+                    <div>
+                      <p className="secondary_main_text">Влажность</p>
+                      <p className="secondary_main_text">
+                        {weather.main.humidity} %
+                      </p>
+                    </div>
+                  </div>
+                  <div className="secondary_unit_container">
+                    <img className="secondary_icon " src={SunRiseIcon} />
+                    <p className="secondary_main_text">
+                      {new Date(
+                        weather.sys.sunrise * 1000
+                      ).toLocaleTimeString()}
+                    </p>
+                  </div>
+                </div>
+                <div className="secondary_text_container">
+                  <div className="secondary_unit_container">
+                    <img className="secondary_icon " src={WindIcon} />
+                    <p className="secondary_main_text">
+                      {weather.wind.speed} м/сек
+                    </p>
+                  </div>
+                  <div className="secondary_unit_container">
+                    <img className="secondary_icon " src={SunSetIcon} />
+                    <p className="secondary_main_text">
+                      {new Date(weather.sys.sunset * 1000).toLocaleTimeString()}
+                    </p>
+                  </div>
+                </div>
+              </section>
+              <section> </section>
             </footer>
           </>
         ) : (
           <p className="main_text">Выберите город</p>
         )}
-
-        {/* 
-        {weather != undefined && listWeather != undefined ? (
-          <WeatherContainer data={weather} list={listWeather.list} />
-        ) : (
-          <div>Выберите город</div>
-        )} */}
       </section>
     </>
   );

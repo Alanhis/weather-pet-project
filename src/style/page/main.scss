@@ -50,3 +50,41 @@
   color: #ffff;
   margin: 4px;
 }
+.secondary_info_container {
+  background: white;
+  width: 400px;
+  height: 30vh;
+  display: flex;
+  margin-left: 30px;
+  flex-direction: column;
+  border-radius: 50px;
+  justify-content: space-around;
+}
+.secondary_text_container {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.secondary_unit_container {
+  display: flex;
+  align-items: center;
+}
+.secondary_icon {
+  filter: brightness(0) saturate(100%) invert(55%) sepia(66%) saturate(319%)
+    hue-rotate(100deg) brightness(88%) contrast(85%);
+}
+.secondary_main_text {
+  font-family: "PT Sans Caption";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 19px;
+  line-height: 15px;
+}
+.third_container {
+  height: 300px;
+  background: red;
+  width: 45vw;
+  border-radius: 50px;
+  margin-right: 39px;
+}
