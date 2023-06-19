@@ -82,9 +82,14 @@
   line-height: 15px;
 }
 .third_container {
-  height: 300px;
-  background: red;
+  gap: 15px;
+  display: flex;
+  height: 30vh;
+  background: #fff;
   width: 45vw;
   border-radius: 50px;
-  margin-right: 39px;
+  margin-right: 40px;
+  justify-content: space-around;
+  align-items: center;
+  margin-left: 45px;
 }

@@ -59,7 +59,7 @@ function App() {
                 </p>
               </div>
             </main>
-            <footer>
+            <footer className="footer_container">
               <section className="secondary_info_container">
                 <div className="secondary_text_container">
                   <div className="secondary_unit_container">
@@ -95,7 +95,25 @@ function App() {
                   </div>
                 </div>
               </section>
-              <section> </section>
+              <section className="third_container ">
+                {listWeather.list.map((data, key) => {
+                  return (
+                    <div className="hour-container" key={key}>
+                      <p className="secondary_main_text">
+                        {new Date(data.dt * 1000).toLocaleTimeString()}
+                      </p>
+                      <img
+                        className="hour-icon secondary_icon "
+                        src={Icon[data.weather[0].main + "Icon"]}
+                        alt="Иконка погоды"
+                      />
+                      <p className="secondary_main_text">
+                        {data.main.feels_like}°C
+                      </p>
+                    </div>
+                  );
+                })}
+              </section>
             </footer>
           </>
         ) : (

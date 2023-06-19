@@ -16,9 +16,11 @@
 .hour-container {
   display: flex;
   gap: 15px;
+  flex-direction: column;
+  align-items: center;
 }
 .hour-icon {
-  width: 45px;
+  width: 45px !important;
 }
 .hours-list {
   display: flex;
@@ -26,4 +28,8 @@
   align-items: flex-start;
   gap: 5px;
   padding-bottom: 10px;
+}
+.footer_container {
+  display: flex;
+  justify-content: space-between;
 }
