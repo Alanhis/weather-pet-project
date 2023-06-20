@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
-import "./App.css";
-import { AddressSuggestions } from "react-dadata";
-import "react-dadata/dist/react-dadata.css";
-import { WeatherContainer } from "./component/weather-container";
+import { Icon } from "./utils/weatherIconSet";
+import { getWeather } from "./utils/fetch";
+import { HeaderComponent } from "./component/header/header";
+import { FooterComponent } from "./component/footer/footer";
+import "./style/page/main.scss";
+
 function App() {
   const [value, setValue] = useState(); // Переменная с данными города
   const [weather, setWeather] = useState();
@@ -10,46 +12,42 @@ function App() {
 
   useEffect(() => {
     if (value != undefined) {
-      fetch(
-        `https://api.openweathermap.org/data/2.5/weather?lat=${
-          value.data.geo_lat
-        }&lon=${value.data.geo_lon}&appid=${
-          import.meta.env.VITE_OPENWEATHER_API
-        }&units=metric&lang=ru`
-      )
-        .then((data) => data.json())
-        .then((result) => {
-          setWeather(result);
-        });
-      fetch(
-        `https://api.openweathermap.org/data/2.5/forecast?lat=${
-          value.data.geo_lat
-        }&lon=${value.data.geo_lon}&cnt=5&appid=${
-          import.meta.env.VITE_OPENWEATHER_API
-        }&units=metric&lang=ru`
-      )
-        .then((data) => data.json())
-        .then((result) => {
-          setListWeather(result);
-        });
+      getWeather(value, setWeather, setListWeather);
     }
   }, [value]);
+
   return (
     <>
-      <div>
-        <AddressSuggestions
-          token={import.meta.env.VITE_DADATA_API}
-          value={value}
-          onChange={setValue}
-          filterFromBound="city"
-          filterToBound="city"
-        />
+      <section id="main-container">
+        <HeaderComponent value={value} setValue={setValue} />
         {weather != undefined && listWeather != undefined ? (
-          <WeatherContainer data={weather} list={listWeather.list} />
+          <>
+            <main className="main_container">
+              <div className="main_info_container">
+                <img
+                  className="icon"
+                  src={Icon[weather.weather[0].main + "Icon"]}
+                  alt="Иконка погоды"
+                />
+                <p className="main_info_text ">{weather.main.temp} °C</p>
+                <p className="main_info_text ">{value.value}</p>
+              </div>
+              <div className="main_time_container">
+                <p className="main_info_text">
+                  {new Date(
+                    Date.now() +
+                      new Date().getTimezoneOffset() * 60000 +
+                      weather.timezone * 1000
+                  ).toLocaleTimeString()}
+                </p>
+              </div>
+            </main>
+            <FooterComponent weather={weather} listWeather={listWeather} />
+          </>
         ) : (
-          <div>Выберите город</div>
+          <p className="main_text">Выберите город</p>
         )}
-      </div>
+      </section>
     </>
   );
 }
