@@ -1,3 +1,4 @@
+@import "../_params";
 .header {
   display: flex;
   justify-content: space-between;
@@ -7,7 +8,11 @@
 #main-container {
   width: 80vw;
   height: 800px;
-  background: #dce1de;
+  background: $color_1;
+}
+#main-container:has(.footer_container) {
+  height: auto;
+  padding-bottom: 70px;
 }
 #root {
   max-width: 1280px;
@@ -20,13 +25,13 @@
   font-family: "PT Sans Caption";
   font-style: normal;
   font-weight: 700;
-  font-size: 21px;
+  font-size: 1.3em;
   line-height: 24px;
-  color: #1f2421;
+  color: $color_5;
 }
 .main_container {
   height: 195px;
-  background: #216869;
+  background: $color_4;
   display: flex;
   margin: 3%;
   border-radius: 45px;
@@ -50,46 +55,37 @@
   color: #ffff;
   margin: 4px;
 }
-.secondary_info_container {
-  background: white;
-  width: 400px;
-  height: 30vh;
+
+@media screen and (max-width: 706px) {
+  .hour-container {
+    flex-direction: row !important;
+  }
+  .icon {
+    width: 17vw;
+  }
+}
+
+.container {
+  background: $color_1;
+  width: 50vh;
   display: flex;
-  margin-left: 30px;
   flex-direction: column;
-  border-radius: 50px;
-  justify-content: space-around;
-}
-.secondary_text_container {
-  display: flex;
-  justify-content: space-between;
-  padding-left: 15px;
-  padding-right: 15px;
-}
-.secondary_unit_container {
-  display: flex;
+  margin-top: 50px;
+  position: absolute;
+  left: calc(50% - 25vh);
   align-items: center;
 }
-.secondary_icon {
-  filter: brightness(0) saturate(100%) invert(55%) sepia(66%) saturate(319%)
-    hue-rotate(100deg) brightness(88%) contrast(85%);
+.icon {
+  width: 4vw;
+  filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%)
+    hue-rotate(49deg) brightness(105%) contrast(105%);
 }
-.secondary_main_text {
-  font-family: "PT Sans Caption";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 19px;
-  line-height: 15px;
-}
-.third_container {
+.hour-container {
+  display: flex;
   gap: 15px;
-  display: flex;
-  height: 30vh;
-  background: #fff;
-  width: 45vw;
-  border-radius: 50px;
-  margin-right: 40px;
-  justify-content: space-around;
+  flex-direction: column;
   align-items: center;
-  margin-left: 45px;
+}
+.hour-icon {
+  width: 45px !important;
 }
